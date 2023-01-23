@@ -4,6 +4,7 @@ import com.practice.attendance.global.entity.BaseIdEntity
 import jakarta.persistence.*
 
 @Entity
+@Table
 class Member(
     val email: String,
     val grade: Int,
