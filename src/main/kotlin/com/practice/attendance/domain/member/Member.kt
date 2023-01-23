@@ -9,4 +9,8 @@ class Member(
     val password: String,
     val name: String,
     val role: String,
+    @Enumerated(EnumType.STRING)
+    @ElementCollection(fetch = FetchType.EAGER)
+    @CollectionTable(name = "UserRole", joinColumns = [JoinColumn(name = "id")])
+    val roles: MutableList<Role> = mutableListOf(),
 ): BaseIdEntity()
