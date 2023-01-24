@@ -1,8 +1,8 @@
-package com.practice.attendance.domain.member.service.dto.req
+package com.practice.attendance.domain.member.service.dto
 
 import com.practice.attendance.domain.member.presentation.data.req.SignupReq
 
-class SignupReqDto (
+data class SignupDto (
     val email: String,
     val password: String,
 ) {

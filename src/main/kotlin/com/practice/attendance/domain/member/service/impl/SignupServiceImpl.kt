@@ -4,7 +4,7 @@ import com.practice.attendance.domain.member.Member
 import com.practice.attendance.domain.member.Role
 import com.practice.attendance.domain.member.repository.MemberRepository
 import com.practice.attendance.domain.member.service.SignupService
-import com.practice.attendance.domain.member.service.dto.req.SignupReqDto
+import com.practice.attendance.domain.member.service.dto.SignupDto
 import com.practice.attendance.global.annotation.TransactionService
 import com.practice.attendance.global.util.GAuthProperties
 import gauth.GAuth
@@ -15,10 +15,10 @@ class SignupServiceImpl(
     private val memberRepository: MemberRepository,
     private val gAuthProperties: GAuthProperties,
 ) : SignupService {
-    override fun execute(signupReqDto: SignupReqDto) : Long{
+    override fun execute(signupDto: SignupDto) : Long{
         val accessToken = GAuth.generateToken(
-            signupReqDto.email,
-            signupReqDto.password,
+            signupDto.email,
+            signupDto.password,
             gAuthProperties.clientId,
             gAuthProperties.clientSecret,
             gAuthProperties.redirectURI

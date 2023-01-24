@@ -13,6 +13,7 @@ enum class ErrorCode(
     FORBIDDEN(403, "금지된 요청입니다."),
 
     NOT_FOUND(404, "리소스를 찾을 수 없습니다."),
+    MEMBER_NOT_FIND(404, "유저를 찾을 수 없습니다."),
 
     INTERNAL_ERROR(500, "서버 내부 에러"),
 }
