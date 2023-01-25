@@ -40,7 +40,7 @@ dependencies {
 	implementation("io.jsonwebtoken:jjwt-api:0.11.5")
 	testImplementation("org.springframework.boot:spring-boot-starter-test")
 	testImplementation("org.springframework.security:spring-security-test")
-	implementation("com.github.GSM-MSG:GAuth-SDK-Java:v1.0.0")
+	implementation("com.github.GSM-MSG:GAuth-SDK-Java:v1.0.1")
 }
 
 tasks.withType<KotlinCompile> {
