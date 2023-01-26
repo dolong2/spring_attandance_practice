@@ -37,7 +37,7 @@ class GlobalExceptionHandler {
     fun GAuthExceptionHandler(request: HttpServletRequest, ex: GAuthException): ResponseEntity<ErrorResponse>{
         log.error(request.requestURI)
         log.error("{}", ex.code)
-        val errorResponse: ErrorResponse = ErrorResponse(ex.code, "GAuth요청 중 에러 발생")
+        val errorResponse = ErrorResponse(ex.code, "GAuth요청 중 에러 발생")
         return ResponseEntity<ErrorResponse>(errorResponse, HttpStatus.valueOf(ex.code))
     }
 }

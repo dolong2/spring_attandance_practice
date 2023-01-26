@@ -1,5 +1,6 @@
 package com.practice.attendance.domain.member
 
+import com.practice.attendance.domain.subject.StudentList
 import com.practice.attendance.global.entity.BaseIdEntity
 import jakarta.persistence.*
 
@@ -15,4 +16,7 @@ class Member(
     @ElementCollection(fetch = FetchType.EAGER)
     @CollectionTable(name = "UserRole", joinColumns = [JoinColumn(name = "id")])
     val roles: MutableList<Role> = mutableListOf(),
-): BaseIdEntity()
+): BaseIdEntity(){
+    @OneToMany(cascade = [CascadeType.REMOVE], mappedBy = "student")
+    val studentList: List<StudentList> = mutableListOf()
+}
