@@ -1,8 +1,8 @@
 package com.practice.attendance.global.exception
 
 class ErrorResponse(
-  errorCode: ErrorCode
+    val code: Int,
+    val msg: String
 ) {
-    val code: Int = errorCode.code
-    val msg: String = errorCode.msg
+    constructor(errorCode: ErrorCode): this(errorCode.code, errorCode.msg)
 }
