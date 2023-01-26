@@ -2,6 +2,7 @@ package com.practice.attendance.global.exception.handler
 
 import com.practice.attendance.global.exception.BasicException
 import com.practice.attendance.global.exception.ErrorResponse
+import gauth.exception.GAuthException
 import jakarta.servlet.http.HttpServletRequest
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
@@ -24,11 +25,19 @@ class GlobalExceptionHandler {
     }
 
     @ExceptionHandler(BindException::class)
-    fun bindExceptionHandler(e: BindException): ResponseEntity<*> {
+    fun bindExceptionHandler(ex: BindException): ResponseEntity<*> {
         val errorMap: MutableMap<String, String?> = HashMap()
-        for (error in e.fieldErrors) {
+        for (error in ex.fieldErrors) {
             errorMap[error.field] = error.defaultMessage
         }
         return ResponseEntity<Map<String, String?>>(errorMap, HttpStatus.BAD_REQUEST)
+    }
+
+    @ExceptionHandler(GAuthException::class)
+    fun GAuthExceptionHandler(request: HttpServletRequest, ex: GAuthException): ResponseEntity<ErrorResponse>{
+        log.error(request.requestURI)
+        log.error("{}", ex.code)
+        val errorResponse: ErrorResponse = ErrorResponse(ex.code, "GAuth요청 중 에러 발생")
+        return ResponseEntity<ErrorResponse>(errorResponse, HttpStatus.valueOf(ex.code))
     }
 }
