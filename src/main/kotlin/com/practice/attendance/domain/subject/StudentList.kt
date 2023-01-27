@@ -1,10 +1,9 @@
 package com.practice.attendance.domain.subject
 
+import com.practice.attendance.domain.attendance.AttendanceStatus
 import com.practice.attendance.domain.member.Member
 import com.practice.attendance.global.entity.BaseIdEntity
-import jakarta.persistence.Entity
-import jakarta.persistence.JoinColumn
-import jakarta.persistence.ManyToOne
+import jakarta.persistence.*
 
 @Entity
 class StudentList(
@@ -14,4 +13,7 @@ class StudentList(
     @ManyToOne
     @JoinColumn(name = "subject_id")
     val subject: Subject,
-): BaseIdEntity()
+): BaseIdEntity(){
+    @OneToMany(cascade = [CascadeType.REMOVE], mappedBy = "studentList")
+    val attendanceStatus: List<AttendanceStatus> = mutableListOf()
+}
