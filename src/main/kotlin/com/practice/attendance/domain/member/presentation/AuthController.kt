@@ -22,13 +22,11 @@ class AuthController (
     private val signInService: SignInService,
 ) {
     @PostMapping("/signup")
-    fun signup(@Valid @RequestBody signupReq: SignupReq): ResponseEntity<Void>{
+    fun signup(@Valid @RequestBody signupReq: SignupReq): ResponseEntity<Void> =
         signupService.execute(SignupDto(signupReq))
-        return ResponseEntity.ok().build()
-    }
+            .run { ResponseEntity.ok().build() }
 
     @PostMapping
-    fun signIn(@Valid @RequestBody signInReq: SignInReq): ResponseEntity<SignInRes>{
-        return ResponseEntity.ok(SignInRes(signInService.execute(SignInDto(signInReq))))
-    }
+    fun signIn(@Valid @RequestBody signInReq: SignInReq): ResponseEntity<SignInRes> =
+        ResponseEntity.ok(SignInRes(signInService.execute(SignInDto(signInReq))))
 }
