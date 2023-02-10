@@ -9,9 +9,10 @@ import java.time.LocalDate
 
 @Entity
 class AttendanceStatus(
+    updateId: Long = 0,
     val participation: Boolean,
     val date: LocalDate,
     @ManyToOne
     @JoinColumn(name = "list_id")
     val studentList: StudentList,
-): BaseIdEntity()
+): BaseIdEntity(id = updateId)

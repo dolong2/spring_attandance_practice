@@ -6,11 +6,12 @@ import jakarta.persistence.*
 
 @Entity
 class Subject(
+    updateId: Long = 0,
     val name: String,
     @OneToOne
     @JoinColumn(name = "teacher_id")
     val teacher: Member,
-): BaseIdEntity() {
+): BaseIdEntity(id = updateId) {
     @OneToMany(cascade = [CascadeType.REMOVE], mappedBy = "subject")
     val studentList: List<StudentList> = mutableListOf()
 }
