@@ -14,15 +14,15 @@ import gauth.GAuth
 class SignInServiceImpl(
     private val memberRepository: MemberRepository,
     private val tokenProvider: TokenProvider,
-    private val gauthProperites: GAuthProperties,
+    private val gAuthProperties: GAuthProperties,
 ) : SignInService {
     override fun execute(signInDto: SignInDto): TokenDto {
         GAuth.generateToken(
             signInDto.email,
             signInDto.password,
-            gauthProperites.clientId,
-            gauthProperites.clientSecret,
-            gauthProperites.redirectURI
+            gAuthProperties.clientId,
+            gAuthProperties.clientSecret,
+            gAuthProperties.redirectURI
         )
         if (!memberRepository.existsByEmail(signInDto.email))
             throw MemberNotFindException()
